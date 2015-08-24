@@ -6,3 +6,5 @@ logWatcher.on('zone-change', function (data) {
 });
 
 logWatcher.start();
+
+logWatcher.stop();
