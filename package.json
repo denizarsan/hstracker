@@ -1,0 +1,30 @@
+{
+  "name": "hstracker",
+  "version": "1.0.0",
+  "description": "A deck tracker for Hearthstone",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "devDependencies": {
+    "hearthstone-log-watcher": "^2.0.3",
+    "underscore": "^1.8.3"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rospique/hstracker.git"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "rospique <rospique@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rospique/hstracker/issues"
+  },
+  "homepage": "https://github.com/rospique/hstracker#readme"
+}
