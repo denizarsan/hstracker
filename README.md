@@ -1,1 +1,1 @@
-# hstracker
+# Hearthstone Tracker

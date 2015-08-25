@@ -1,0 +1,24 @@
+{
+    "undef": true,
+    "expr": true,
+    "trailing": true,
+    "curly": true,
+    "devel": true,
+    "eqeqeq": true,
+    "browser": true,
+    "es3": true,
+    "quotmark": "single",
+    "shadow": "inner",
+    "unused": true,
+    "jasmine": true,
+    "jquery": true,
+    "node": true,
+    "predef": [
+      "inject",
+      "helpers",
+      "angular",
+      "_",
+      "globals",
+      "JSON"
+    ]
+}
