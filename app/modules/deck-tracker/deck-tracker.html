@@ -1,7 +1,27 @@
-<h2>Deck Tracker</h2>
+<div class="DeckTracker">
+  <div class="DeckTracker-title row">
+    Deck Title Here
+  </div>
+  <div class="DeckTracker-card row">
+    <div class="DeckTracker-cardCost col-xs-2">
+      <div class="Hexagon-top"></div>
+      <div class="Hexagon-middle">X</div>
+      <div class="Hexagon-bottom"></div>
+    </div>
+    <div class="DeckTracker-cardName col-xs-5">
+      Card Name Here
+    </div>
+    <div class="DeckTracker-cardProbability col-xs-3">
+      Prob
+    </div>
+    <div class="DeckTracker-cardQuantity col-xs-2">
+      Qty
+    </div>
+  </div>
+</div>
 
 <div ng-repeat="zone in zones">
-  <h3> {{ zone.name }}</h3>
+  <h5> {{ zone.name }}</h5>
   <div ng-repeat="card in zone.cards">
     ({{ card.id }}){{ card.name }} - {{ card.entityId}}
   </div>

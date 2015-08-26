@@ -1,0 +1,53 @@
+.DeckTracker {
+  padding: 0 10px;
+}
+
+.DeckTracker-title {
+  text-align: center;
+  background-color: #2e529b;
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.DeckTracker-card {
+  background: #f0f8ff;
+  border: 1px solid #fff;
+}
+
+.DeckTracker-card + .DeckTracker-card {
+  border-top: none;
+}
+
+.DeckTracker-title,
+.DeckTracker-card,
+.DeckTracker-cardName,
+.DeckTracker-cardProbability,
+.DeckTracker-cardQuantity {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.Hexagon-top {
+  width: 0;
+  border-bottom: 7px solid #2e529b;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+}
+
+.Hexagon-middle {
+  width: 26px;
+  height: 16px;
+  background-color: #2e529b;
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: #fff;
+}
+
+.Hexagon-bottom {
+  width: 0;
+  border-top: 7px solid #2e529b;
+  border-left: 13px solid transparent;
+  border-right: 13px solid transparent;
+}
