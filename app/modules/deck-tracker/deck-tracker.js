@@ -17,12 +17,14 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
 
             var LogWatcher,
                 logWatcher,
-                deck;
+                deck,
+                knownEntityIds;
 
             $scope.init = function() {
                 LogWatcher = require('hearthstone-log-watcher');
                 logWatcher = new LogWatcher();
-                deck = require('../app/data/decks/zoolock');
+                deck = require('../app/data/decks/zoolock'),
+                knownEntityIds = [];
 
                 // Deck
                 $scope.title = deck.name;
@@ -45,7 +47,7 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
                             id: cardId,
                             entityId: null
                         });
-                    };
+                    }
 
                     $scope.displayDeck.push({
                         name: Cards.getCard(cardId).name,
@@ -89,6 +91,7 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
                     if (data.team === 'FRIENDLY') {
                         if(data.zone === 'DECK') {
                             $scope.deck.push(removeAndGetCard(currentCard, 'DECK'));
+                            knownEntityIds.push(currentCard.entityId);
                             $scope.$emit('Card Added to Deck', currentCard);
                         } else if (data.zone === 'HAND') {
                             $scope.hand.push(removeAndGetCard(currentCard, 'HAND'));
@@ -112,7 +115,7 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
                             if (!removed) {
                                 _.each($scope[zone], function(zoneCard, index, currentZone) {
                                     if (zone === 'deck' && zoneCard && zoneCard.id === cardToRemove.id){
-                                        if (zoneCard && zoneCard.entityId === null) {
+                                        if (zoneCard && zoneCard.entityId === null && !_.contains(knownEntityIds, cardToRemove.entityId)) {
                                             zoneCard.entityId = cardToRemove.entityId;
                                         }
                                         if (zoneCard &&  zoneCard.entityId === cardToRemove.entityId) {
@@ -136,6 +139,14 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
                 });
 
                 logWatcher.start();
+            };
+
+            $scope.isInHand = function(card) {
+                if ($scope.hand.length > 0) {
+                    return _.some($scope.hand, function(cardInHand) {
+                        return card.id === cardInHand.id;
+                    });
+                }
             };
 
             $scope.init();

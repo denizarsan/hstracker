@@ -2,7 +2,9 @@
   <div class="DeckTracker-title row">
     {{ title }} ({{ deck.length }})
   </div>
-  <div class="DeckTracker-card row" ng-repeat="card in displayDeck | orderBy: 'cost'">
+  <div class="DeckTracker-card row" ng-repeat="card in displayDeck | orderBy: ['cost', 'name']"
+       ng-class="{'DeckTracker-card--zero': card.qty === 0,
+                  'DeckTracker-card--inHand': isInHand(card) }">
     <div class="DeckTracker-cardCost col-xs-2">
       <div class="Hexagon-top"></div>
       <div class="Hexagon-middle">{{ card.cost }}</div>

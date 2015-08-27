@@ -15,6 +15,14 @@
   border: 1px solid #fff;
 }
 
+.DeckTracker-card--zero {
+  background: #e0e0e0
+}
+
+.DeckTracker-card--inHand {
+  color: #009900;
+}
+
 .DeckTracker-card + .DeckTracker-card {
   border-top: none;
 }
