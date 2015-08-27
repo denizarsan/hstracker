@@ -10,98 +10,134 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
     .controller('DeckTrackerController', [
 
         '$scope',
+        'Cards',
 
-        function($scope) {
+        function($scope,
+                 Cards) {
 
-            $scope.zones = {
-                hand: {
-                    name: 'HAND',
-                    cards: []
-                },
-                deck: {
-                    name: 'DECK',
-                    cards: []
-                },
-                play: {
-                    name: 'PLAY',
-                    cards: []
-                },
-                graveyard: {
-                    name: 'GRAVEYARD',
-                    cards: []
-                },
-                secret: {
-                    name: 'SECRET',
-                    cards: []
-                },
-                playHero: {
-                    name: 'PLAY (Hero)',
-                    cards: []
-                },
-                playPower: {
-                    name: 'PLAY (Hero Power)',
-                    cards: []
-                },
-                playWeapon: {
-                    name: 'PLAY (Weapon)',
-                    cards: []
-                }
-            };
+            var LogWatcher,
+                logWatcher,
+                deck;
 
-            var LogWatcher = require('hearthstone-log-watcher'),
+            $scope.init = function() {
+                LogWatcher = require('hearthstone-log-watcher');
                 logWatcher = new LogWatcher();
+                deck = require('../app/data/decks/zoolock');
 
-            logWatcher.on('zone-change', function(data) {
-                var card = {
-                    name: data.cardName,
-                    entityId: data.entityId,
-                    id: data.cardId
-                };
+                // Deck
+                $scope.title = deck.name;
+                $scope.deck = [];
+                $scope.play = [];
+                $scope.hand = [];
+                $scope.graveyard = [];
 
-                if (data.team === 'FRIENDLY') {
-                    if (data.zone === 'HAND') {
-                        removeCardFromOtherZones($scope.zones.hand, card);
-                        $scope.zones.hand.cards.push(card);
-                    } else if (data.zone === 'PLAY'){
-                        removeCardFromOtherZones($scope.zones.play, card);
-                        $scope.zones.play.cards.push(card);
-                    } else if (data.zone === 'GRAVEYARD'){
-                        removeCardFromOtherZones($scope.zones.graveyard, card);
-                        $scope.zones.graveyard.cards.push(card);
-                    } else if (data.zone === 'DECK'){
-                        removeCardFromOtherZones($scope.zones.deck, card);
-                        $scope.zones.deck.cards.push(card);
-                    } else if (data.zone === 'SECRET'){
-                        removeCardFromOtherZones($scope.zones.secret, card);
-                        $scope.zones.secret.cards.push(card);
-                    } else if (data.zone === 'PLAY (Weapon)'){
-                        removeCardFromOtherZones($scope.zones.playWeapon, card);
-                        $scope.zones.playWeapon.cards.push(card);
-                    } else if (data.zone === 'PLAY (Hero Power)'){
-                        removeCardFromOtherZones($scope.zones.playPower, card);
-                        $scope.zones.playPower.cards.push(card);
-                    } else {
-                        removeCardFromOtherZones($scope.zones.playHero, card);
-                        $scope.zones.playHero.cards.push(card);
+                // Zones
+                $scope.displayDeck = [];
+                $scope.playZone = [];
+                $scope.handZone = [];
+                $scope.graveyardZone = [];
+
+                _.each(deck.cards, function(cardQuantity, cardId) {
+                    for (var i = 0; i < cardQuantity; i++) {
+                        $scope.deck.push({
+                            name: Cards.getCard(cardId).name,
+                            cost: Cards.getCard(cardId).cost,
+                            id: cardId,
+                            entityId: null
+                        });
+                    };
+
+                    $scope.displayDeck.push({
+                        name: Cards.getCard(cardId).name,
+                        cost: Cards.getCard(cardId).cost,
+                        id: cardId,
+                        qty: cardQuantity
+                    });
+                });
+
+                $scope.$on('Card Removed from Deck', function(event, card) {
+                    _.find($scope.displayDeck, function(deckCard) {
+                        if (card.id === deckCard.id && deckCard.qty > 0) {
+                            deckCard.qty--;
+                            return deckCard;
+                        }
+                    });
+                });
+
+                $scope.$on('Card Added to Deck', function(event, card) {
+                    _.find($scope.displayDeck, function(deckCard) {
+                        if (card.id === deckCard.id) {
+                            deckCard.qty++;
+                            return deckCard;
+                        }
+                    });
+                });
+
+                logWatcher.on('zone-change', function(data) {
+                    var currentCard = {
+                        id: data.cardId,
+                        entityId: data.entityId
+                    };
+
+                    if (data.zone === 'SECRET' ||
+                        data.zone === 'PLAY (Weapon)' ||
+                        data.zone === 'PLAY (Hero)' ||
+                        data.zone === 'PLAY (Hero Power)') {
+                        data.zone = 'PLAY';
                     }
-                }
-                $scope.$apply();
-            });
 
-            logWatcher.start();
+                    if (data.team === 'FRIENDLY') {
+                        if(data.zone === 'DECK') {
+                            $scope.deck.push(removeAndGetCard(currentCard, 'DECK'));
+                            $scope.$emit('Card Added to Deck', currentCard);
+                        } else if (data.zone === 'HAND') {
+                            $scope.hand.push(removeAndGetCard(currentCard, 'HAND'));
+                        } else if (data.zone === 'PLAY') {
+                            $scope.play.push(removeAndGetCard(currentCard, 'PLAY'));
+                        } else if (data.zone === 'GRAVEYARD') {
+                            $scope.graveyard.push(removeAndGetCard(currentCard, 'GRAVEYARD'));
+                        }
 
+                        $scope.$apply();
+                    }
 
-            function removeCardFromOtherZones(currentZone, card) {
-                _.each($scope.zones, function(zone) {
-                    if (zone.name !== currentZone.name) {
-                        _.each(zone.cards, function(cardInZone, index, cards) {
-                            if (cardInZone && cardInZone.id === card.id && cardInZone.entityId === card.entityId) {
-                                cards.splice(index, 1);
-                                return;
+                    function removeAndGetCard(cardToRemove, currentZone) {
+                        var zones = ['hand', 'play', 'graveyard', 'deck'],
+                            currentCard = cardToRemove,
+                            removed = false;
+
+                        zones = _.without(zones, currentZone.toLowerCase());
+
+                        _.each(zones, function(zone) {
+                            if (!removed) {
+                                _.each($scope[zone], function(zoneCard, index, currentZone) {
+                                    if (zone === 'deck' && zoneCard && zoneCard.id === cardToRemove.id){
+                                        if (zoneCard && zoneCard.entityId === null) {
+                                            zoneCard.entityId = cardToRemove.entityId;
+                                        }
+                                        if (zoneCard &&  zoneCard.entityId === cardToRemove.entityId) {
+                                            currentCard = zoneCard;
+                                            currentZone.splice(index, 1);
+                                            removed = true;
+                                            $scope.$emit('Card Removed from Deck', cardToRemove);
+                                        }
+                                    } else if (zoneCard && zoneCard.id === cardToRemove.id) {
+                                        if (zoneCard && zoneCard.entityId === cardToRemove.entityId) {
+                                            currentCard = zoneCard;
+                                            currentZone.splice(index, 1);
+                                            removed = true;
+                                        }
+                                    }
+                                });
                             }
                         });
+                        return currentCard;
                     }
                 });
-            }
+
+                logWatcher.start();
+            };
+
+            $scope.init();
         }
     ]);

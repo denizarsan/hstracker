@@ -1,5 +1,5 @@
 .DeckTracker {
-  padding: 0 10px;
+  padding: 0 15px;
 }
 
 .DeckTracker-title {
@@ -24,8 +24,11 @@
 .DeckTracker-cardName,
 .DeckTracker-cardProbability,
 .DeckTracker-cardQuantity {
-  padding-top: 5px;
-  padding-bottom: 5px;
+  padding: 5px 0;
+}
+
+.DeckTracker-cardQuantity {
+  text-align: center;
 }
 
 .Hexagon-top {
