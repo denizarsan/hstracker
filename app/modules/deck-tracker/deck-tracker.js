@@ -89,7 +89,7 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
                     }
 
                     if (data.team === 'FRIENDLY') {
-                        if(data.zone === 'DECK') {
+                        if (data.zone === 'DECK') {
                             $scope.deck.push(removeAndGetCard(currentCard, 'DECK'));
                             knownEntityIds.push(currentCard.entityId);
                             $scope.$emit('Card Added to Deck', currentCard);
@@ -114,8 +114,9 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
                         _.each(zones, function(zone) {
                             if (!removed) {
                                 _.each($scope[zone], function(zoneCard, index, currentZone) {
-                                    if (zone === 'deck' && zoneCard && zoneCard.id === cardToRemove.id){
-                                        if (zoneCard && zoneCard.entityId === null && !_.contains(knownEntityIds, cardToRemove.entityId)) {
+                                    if (zone === 'deck' && zoneCard && zoneCard.id === cardToRemove.id) {
+                                        if (zoneCard && zoneCard.entityId === null &&
+                                            !_.contains(knownEntityIds, cardToRemove.entityId)) {
                                             zoneCard.entityId = cardToRemove.entityId;
                                         }
                                         if (zoneCard &&  zoneCard.entityId === cardToRemove.entityId) {

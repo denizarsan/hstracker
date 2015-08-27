@@ -6,7 +6,7 @@ angular.module('hstracker', [
     'hstracker.utils'])
 
     .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/deck-tracker'});
+        $routeProvider.otherwise({ redirectTo: '/deck-tracker' });
     }])
 
     .run(['Cards', function(Cards) {

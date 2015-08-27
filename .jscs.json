@@ -1,0 +1,54 @@
+{
+    "disallowKeywordsOnNewLine": [ "else" ],
+    "disallowMixedSpacesAndTabs": true,
+    "disallowMultipleLineBreaks": true,
+    "disallowMultipleLineStrings": true,
+    "disallowNewlineBeforeBlockStatements": true,
+    "disallowQuotedKeysInObjects": "allButReserved",
+    "disallowSpaceAfterPrefixUnaryOperators": [
+        "++", "--", "+",
+        "-", "~", "!"
+    ],
+    "disallowSpaceBeforePostfixUnaryOperators": [ "++", "--" ],
+    "disallowSpacesInFunction": { "beforeOpeningRoundBrace": true },
+    "disallowSpacesInsideArrayBrackets": "all",
+    "disallowSpacesInsideParentheses": true,
+    "disallowTrailingComma": true,
+    "disallowTrailingWhitespace": true,
+
+    "maximumLineLength": {
+        "value": 120,
+        "allowComments": true,
+        "allowRegex": true
+    },
+
+    "requireBlocksOnNewline": 1,
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+    "requireCapitalizedConstructors": true,
+    "requireCommaBeforeLineBreak": true,
+    "requireCurlyBraces": [ "if", "else", "for", "while", "do", "try", "catch" ],
+    "requireDotNotation": true,
+    "requireLineFeedAtFileEnd": true,
+    "requireMultipleVarDecl": true,
+    "requireOperatorBeforeLineBreak": true,
+    "requireSemicolons": true,
+    "requireSpaceAfterBinaryOperators": true,
+    "requireSpaceAfterKeywords": [ "if", "else", "for", "while", "do", "switch", "return", "try", "catch", "typeof" ],
+    "requireSpaceAfterLineComment": true,
+    "requireSpaceBeforeBinaryOperators": [
+        "=", "+=", "-=", "*=", "/=",
+        "%=", "<<=", ">>=", ">>>=", "&=",
+        "|=", "^=", "+=", "+", "-",
+        "*", "/", "%", "<<", ">>",
+        ">>>", "&", "|", "^", "&&",
+        "||", "===", "==", ">=", "<=",
+        "<", ">", "!=", "!=="
+    ],
+    "requireSpaceBeforeBlockStatements": true,
+    "requireSpacesInConditionalExpression": true,
+    "requireSpacesInFunction": { "beforeOpeningCurlyBrace": true },
+    "requireSpacesInsideObjectBrackets": "all",
+
+    "validateIndentation": 4,
+    "validateParameterSeparator": ", "
+}
