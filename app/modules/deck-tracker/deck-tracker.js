@@ -15,16 +15,14 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
         function($scope,
                  Cards) {
 
-            var LogWatcher,
-                logWatcher,
-                deck,
-                knownEntityIds;
+            var LogWatcher = require('hearthstone-log-watcher'),
+                fs = require('fs'),
+                jsonfile = require('jsonfile');
 
             $scope.init = function() {
-                LogWatcher = require('hearthstone-log-watcher');
-                logWatcher = new LogWatcher();
-                deck = require('../app/data/decks/zoolock'),
-                knownEntityIds = [];
+                var logWatcher = new LogWatcher(),
+                    deck = getDeck('../../Desktop/mechmage.deck'),
+                    knownEntityIds = [];
 
                 // Deck
                 $scope.title = deck.name;
@@ -140,6 +138,30 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
                 });
 
                 logWatcher.start();
+
+                function getDeck(path) {
+                    var deckFile = fs.readFileSync(path),
+                        jsonFile = 'app/data/decks/mechmage.json',
+                        deckObject = { name: 'MechMage', deckClass: 'Mage', cards: {} },
+                        rest = deckFile.toString(),
+                        newLineIndex = rest.indexOf('\n'),
+                        currentLine = '',
+                        qty = 0,
+                        name = '';
+
+                    while (newLineIndex > -1) {
+                        currentLine = rest.substring(0, newLineIndex);
+                        qty = currentLine.substring(0, currentLine.indexOf(' '));
+                        name = currentLine.substring(currentLine.indexOf(' ') + 1);
+                        rest = rest.substring(newLineIndex + 1);
+                        deckObject.cards[Cards.getCardId(name)] = qty;
+                        newLineIndex = rest.indexOf('\n');
+                    }
+
+                    jsonfile.writeFileSync(jsonFile, deckObject);
+
+                    return require('../app/data/decks/mechmage.json');
+                }
             };
 
             $scope.isInHand = function(card) {
