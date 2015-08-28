@@ -11,7 +11,7 @@
     "title": "Hearthstone Tracker",
     "width": 320,
     "height": 815,
-    "toolbar": false,
+    "toolbar": true,
     "resizable": false
   },
   "dependencies": {

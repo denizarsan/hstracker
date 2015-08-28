@@ -1,0 +1,57 @@
+.DeckPicker {
+  padding: 0 15px;
+}
+
+.DeckPicker-deck {
+  padding: 15px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid #fff;
+}
+
+.DeckPicker-deck:hover, .DeckPicker-deck:active {
+  color: #333;
+  background-color: #fff;
+  text-decoration: none;
+}
+
+.DeckPicker-deck + .DeckPicker-deck {
+  border-top: none;
+}
+
+.DeckPicker-deck--mage {
+  background-color: blue;
+}
+
+.DeckPicker-deck--warlock {
+  background-color: purple;
+}
+
+.DeckPicker-deck--shaman {
+  background-color: darkblue;
+}
+
+.DeckPicker-deck--rogue {
+  background-color: black;
+}
+
+.DeckPicker-deck--druid {
+  background-color: blue;
+}
+
+.DeckPicker-deck--paladin {
+  background-color: blue;
+}
+
+.DeckPicker-deck--warior {
+  background-color: brown;
+}
+
+.DeckPicker-deck--priest {
+  background-color: white;
+}
+
+.DeckPicker-deck--hunter {
+  background-color: green;
+}

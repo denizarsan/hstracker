@@ -1,0 +1,31 @@
+.Home {
+  padding: 0 15px;
+}
+
+.Home-menuItem {
+  display: block;
+  font-size: 18px;
+  color: #fff;
+  padding: 15px;
+  border: 1px solid #fff;
+  background-color: #2e529b;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.Home-menuItem:hover, .Home-menuItem:active {
+  color: #2e529b;
+  background-color: #fff;
+  text-decoration: none;
+}
+
+.Home-menuItem + .Home-menuItem {
+  border-top: none;
+}
+
+.Home-menuItemText {
+  padding: 0 10px;
+}
