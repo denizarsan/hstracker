@@ -1,5 +1,5 @@
 <div class="DeckPicker">
-  <div class="DeckPicker-deck row" ng-repeat="deck in decks"
+  <a class="DeckPicker-deck row" ng-repeat="deck in decks" ng-href="#/deck-tracker/{{ deck.name }}"
        ng-class="{ 'DeckPicker-deck--mage': deck.deckClass === 'Mage',
                    'DeckPicker-deck--warlock': deck.deckClass === 'Warlock',
                    'DeckPicker-deck--shaman': deck.deckClass === 'Shaman',
@@ -11,5 +11,5 @@
                    'DeckPicker-deck--hunter': deck.deckClass === 'Hunter' }">
     <div class="DeckPicker-deckName col-xs-6">{{ deck.name }}</div>
     <div class="DeckPicker-deckClass col-xs-6">( {{ deck.deckClass }} )</div>
-  </div>
+  </a>
 </div>

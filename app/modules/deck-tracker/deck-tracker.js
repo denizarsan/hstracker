@@ -1,7 +1,7 @@
 angular.module('hstracker.deck-tracker', ['ngRoute'])
 
     .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/deck-tracker', {
+        $routeProvider.when('/deck-tracker/:deckName', {
             templateUrl: 'modules/deck-tracker/deck-tracker.html',
             controller: 'DeckTrackerController'
         });
@@ -9,19 +9,21 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
 
     .controller('DeckTrackerController', [
 
+        '$routeParams',
         '$scope',
         'Cards',
 
-        function($scope,
+        function($routeParams,
+                 $scope,
                  Cards) {
 
-            var LogWatcher = require('hearthstone-log-watcher'),
-                fs = require('fs'),
-                jsonfile = require('jsonfile');
+            console.log($routeParams.deckName);
+
+            var LogWatcher = require('hearthstone-log-watcher');
 
             $scope.init = function() {
                 var logWatcher = new LogWatcher(),
-                    deck = getDeck('../../Desktop/mechmage.deck'),
+                    deck = require('../app/data/decks/' + $routeParams.deckName.toLowerCase() + '.json'),
                     knownEntityIds = [];
 
                 // Deck
@@ -139,29 +141,6 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
 
                 logWatcher.start();
 
-                function getDeck(path) {
-                    var deckFile = fs.readFileSync(path),
-                        jsonFile = 'app/data/decks/mechmage.json',
-                        deckObject = { name: 'MechMage', deckClass: 'Mage', cards: {} },
-                        rest = deckFile.toString(),
-                        newLineIndex = rest.indexOf('\n'),
-                        currentLine = '',
-                        qty = 0,
-                        name = '';
-
-                    while (newLineIndex > -1) {
-                        currentLine = rest.substring(0, newLineIndex);
-                        qty = currentLine.substring(0, currentLine.indexOf(' '));
-                        name = currentLine.substring(currentLine.indexOf(' ') + 1);
-                        rest = rest.substring(newLineIndex + 1);
-                        deckObject.cards[Cards.getCardId(name)] = qty;
-                        newLineIndex = rest.indexOf('\n');
-                    }
-
-                    jsonfile.writeFileSync(jsonFile, deckObject);
-
-                    return require('../app/data/decks/mechmage.json');
-                }
             };
 
             $scope.isInHand = function(card) {

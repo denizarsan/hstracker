@@ -1,0 +1,14 @@
+.DeckBuilder {
+  padding: 0 15px;
+}
+
+.DeckBuilder-fileSelect {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  width: 100%;
+  padding: 6px 12px;
+  cursor: pointer;
+  opacity: 0;
+}

@@ -3,11 +3,17 @@
 }
 
 .DeckPicker-deck {
+  display: block;
   padding: 15px;
   color: #fff;
   font-weight: bold;
   font-size: 16px;
   border: 1px solid #fff;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .DeckPicker-deck:hover, .DeckPicker-deck:active {
