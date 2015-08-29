@@ -77,4 +77,4 @@ angular.module('hstracker.deck-builder', ['ngRoute'])
                 }
             };
         }
-      ]);
+    ]);

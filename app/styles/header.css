@@ -1,0 +1,30 @@
+.Header {
+  width: 100%;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.Header-back {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.Header-home {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.Header-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: #333;
+}

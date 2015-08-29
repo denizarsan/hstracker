@@ -4,6 +4,7 @@ angular.module('hstracker', [
     'hstracker.deck-builder',
     'hstracker.deck-picker',
     'hstracker.deck-tracker',
+    'hstracker.header',
     'hstracker.home',
     'hstracker.utils'])
 
