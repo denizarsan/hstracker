@@ -17,8 +17,6 @@ angular.module('hstracker.deck-tracker', ['ngRoute'])
                  $scope,
                  Cards) {
 
-            console.log($routeParams.deckName);
-
             var LogWatcher = require('hearthstone-log-watcher');
 
             $scope.init = function() {
