@@ -60,8 +60,8 @@ Start your game AFTER you do this to ensure no errors in tracking.
 Coming Soon!
 
 ## Screenshots
-|![Home](http://i.imgur.com/TnIjAZW.png)|![Import](http://i.imgur.com/EZ2RGvU.png)|![Track](http://i.imgur.com/gGyW4Hz.png)|
-|---|---|---|
+|![Home](http://i.imgur.com/TnIjAZW.png)|![Import](http://i.imgur.com/EZ2RGvU.png)|![Pick](http://i.imgur.com/16iMjvM.png)|![Track](http://i.imgur.com/gGyW4Hz.png)|
+|---|---|---|---|
 
 ## License
 
