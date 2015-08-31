@@ -22,18 +22,20 @@
   <div class="DeckTracker-card row" ng-repeat="card in displayDeck | orderBy: ['cost', 'name']"
        ng-class="{'DeckTracker-card--zero': card.qty === 0,
                   'DeckTracker-card--inHand': isInHand(card) }">
-    <div class="DeckTracker-cardCost col-xs-2">
-      <div class="Hexagon-top"></div>
-      <div class="Hexagon-middle">{{ card.cost }}</div>
-      <div class="Hexagon-bottom"></div>
+    <div class="ManaCrystal col-xs-2">
+      <div class="ManaCrystal-top"></div>
+      <div class="ManaCrystal-cost">
+        {{ card.cost }}
+      </div>
+      <div class="ManaCrystal-bottom"></div>
     </div>
-    <div class="DeckTracker-cardName col-xs-6">
+    <div class="DeckTracker-cardName col-xs-7">
       {{ card.name }}
     </div>
     <div class="DeckTracker-cardProbability col-xs-2">
       {{ card.qty / deck.length * 100 | number: 2 }}%
     </div>
-    <div class="DeckTracker-cardQuantity col-xs-2">
+    <div class="DeckTracker-cardQuantity col-xs-1">
       {{ card.qty }}
     </div>
   </div>

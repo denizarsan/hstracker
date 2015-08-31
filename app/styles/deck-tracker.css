@@ -91,29 +91,37 @@
 }
 
 .DeckTracker-cardQuantity {
-  text-align: center;
+  font-weight: bold;
 }
 
-.Hexagon-top {
-  width: 0;
-  border-bottom: 7px solid #2e529b;
-  border-left: 13px solid transparent;
-  border-right: 13px solid transparent;
+.ManaCrystal {
+  position: relative;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
-.Hexagon-middle {
-  width: 26px;
-  height: 16px;
-  background-color: #2e529b;
-  text-align: center;
+.ManaCrystal-top {
+  width: 30px;
+  height: 13px;
+  border-bottom: 13px solid #2e529b;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+
+}
+
+.ManaCrystal-cost {
+  position: absolute;
+  top: 6px;
+  left: 26px;
   font-weight: bold;
   font-size: 12px;
   color: #fff;
 }
 
-.Hexagon-bottom {
-  width: 0;
-  border-top: 7px solid #2e529b;
-  border-left: 13px solid transparent;
-  border-right: 13px solid transparent;
+.ManaCrystal-bottom {
+  width: 30px;
+  height: 13px;
+  border-top: 13px solid #2e529b;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
 }
