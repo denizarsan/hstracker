@@ -1,14 +1,6 @@
 <div class="DeckTracker">
   <div class="DeckTracker-header row"
-       ng-class="{ 'DeckTracker-header--druid': deckClass === 'Druid',
-                   'DeckTracker-header--hunter': deckClass === 'Hunter',
-                   'DeckTracker-header--mage': deckClass === 'Mage',
-                   'DeckTracker-header--paladin': deckClass === 'Paladin',
-                   'DeckTracker-header--priest': deckClass === 'Priest',
-                   'DeckTracker-header--rogue': deckClass === 'Rogue',
-                   'DeckTracker-header--shaman': deckClass === 'Shaman',
-                   'DeckTracker-header--warlock': deckClass === 'Warlock',
-                   'DeckTracker-header--warrior': deckClass === 'Warrior' }">
+       ng-class="'DeckTracker-header--' + deckClass.toLowerCase()">
     <div class="DeckTracker-back" ng-click="back()">
       <i class="glyphicon glyphicon-chevron-left"></i>
     </div>

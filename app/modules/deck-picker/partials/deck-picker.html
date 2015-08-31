@@ -1,6 +1,6 @@
 <div class="DeckPicker">
   <div class="DeckPicker-deck row" ng-repeat="deck in decks" ui-sref="deck-tracker({deckName: deck.name})"
-     ng-class="'DeckPicker-deck--' + deck.deckClass.toLowerCase()">
+       ng-class="'DeckPicker-deck--' + deck.deckClass.toLowerCase()">
     <div class="DeckPicker-class col-xs-2" ng-class="'DeckPicker-class--' + deck.deckClass.toLowerCase()"></div>
     <div class="DeckPicker-deckName col-xs-10">{{ deck.name }}</div>
   </div>
