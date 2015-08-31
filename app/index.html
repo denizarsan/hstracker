@@ -14,6 +14,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/app.css">
     <link rel="stylesheet" href="styles/deck-builder.css">
     <link rel="stylesheet" href="styles/deck-picker.css">
     <link rel="stylesheet" href="styles/deck-tracker.css">
@@ -28,7 +29,9 @@
     <div hs-header></div>
 
     <!-- Main View -->
-    <div ui-view class="MainView"></div>
+    <div class="Body">
+      <div ui-view class="ViewTarget"></div>
+    </div>
 
     <!-- Lib Files -->
     <script src="lib/angular.js"></script>

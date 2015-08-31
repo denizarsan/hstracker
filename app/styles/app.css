@@ -1,0 +1,22 @@
+html, body {
+  height: 100%;
+  overflow: visible;
+}
+
+html {
+  overflow-y: scroll;
+}
+
+.Body {
+  background-color: #fff;
+  min-height: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.ViewTarget {
+  position: relative;
+  height: 100%;
+  padding-top: 35px
+
+}

@@ -34,6 +34,7 @@ angular.module('hstracker.deck-tracker', [])
 
                 // Deck
                 $scope.title = deck.name;
+                $scope.deckClass = deck.deckClass;
                 $scope.deck = [];
                 $scope.play = [];
                 $scope.hand = [];

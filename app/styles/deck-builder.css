@@ -1,8 +1,8 @@
-.DeckBuilder {
-  padding: 0 15px;
+.DeckBuilder-import {
+  padding: 15px;
 }
 
-.DeckBuilder-fileSelect {
+.DeckBuilder-importFileSelect {
   position: absolute;
   top: 0;
   right: 0;

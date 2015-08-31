@@ -2,9 +2,53 @@
   padding: 0 15px;
 }
 
+.DeckTracker-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 35px;
+  z-index: 99;
+}
+
+.DeckTracker-header--druid {
+  background-color: #ff7d0A;
+}
+
+.DeckTracker-header--hunter {
+  background-color: #abd473;
+}
+
+.DeckTracker-header--mage {
+  background-color: #69ccf0;
+}
+
+.DeckTracker-header--paladin {
+  background-color: #f58cba;
+}
+
+.DeckTracker-header--priest {
+  color: #333;
+  background-color: #fff;
+}
+
+.DeckTracker-header--rogue {
+  background-color: #fff569;
+}
+
+.DeckTracker-header--shaman {
+  background-color: #0070de;
+}
+
+.DeckTracker-header--warlock {
+  background-color: #9482c9;
+}
+
+.DeckTracker-header--warrior {
+  background-color: #c79c6e;
+}
+
 .DeckTracker-title {
   text-align: center;
-  background-color: #2e529b;
   color: #fff;
   font-weight: bold;
   font-size: 18px;

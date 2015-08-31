@@ -8,7 +8,8 @@
   color: #fff;
   font-weight: bold;
   font-size: 16px;
-  border: 1px solid #fff;
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -22,42 +23,48 @@
   text-decoration: none;
 }
 
+.DeckPicker-deck--priest:hover, .DeckPicker-deck--priest:active {
+  color: #fff;
+  background-color: #333;
+}
+
 .DeckPicker-deck + .DeckPicker-deck {
   border-top: none;
 }
 
-.DeckPicker-deck--mage {
-  background-color: blue;
-}
-
-.DeckPicker-deck--warlock {
-  background-color: purple;
-}
-
-.DeckPicker-deck--shaman {
-  background-color: darkblue;
-}
-
-.DeckPicker-deck--rogue {
-  background-color: black;
-}
-
 .DeckPicker-deck--druid {
-  background-color: blue;
-}
-
-.DeckPicker-deck--paladin {
-  background-color: blue;
-}
-
-.DeckPicker-deck--warior {
-  background-color: brown;
-}
-
-.DeckPicker-deck--priest {
-  background-color: white;
+  background-color: #ff7d0A;
 }
 
 .DeckPicker-deck--hunter {
-  background-color: green;
+  background-color: #abd473;
+}
+
+.DeckPicker-deck--mage {
+  background-color: #69ccf0;
+}
+
+.DeckPicker-deck--paladin {
+  background-color: #f58cba;
+}
+
+.DeckPicker-deck--priest {
+  color: #333;
+  background-color: #fff;
+}
+
+.DeckPicker-deck--rogue {
+  background-color: #fff569;
+}
+
+.DeckPicker-deck--shaman {
+  background-color: #0070de;
+}
+
+.DeckPicker-deck--warlock {
+  background-color: #9482c9;
+}
+
+.DeckPicker-deck--warrior {
+  background-color: #c79c6e;
 }

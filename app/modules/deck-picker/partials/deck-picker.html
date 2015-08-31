@@ -1,14 +1,14 @@
 <div class="DeckPicker">
   <a class="DeckPicker-deck row" ng-repeat="deck in decks" ui-sref="deck-tracker({deckName: deck.name})"
-       ng-class="{ 'DeckPicker-deck--mage': deck.deckClass === 'Mage',
-                   'DeckPicker-deck--warlock': deck.deckClass === 'Warlock',
-                   'DeckPicker-deck--shaman': deck.deckClass === 'Shaman',
-                   'DeckPicker-deck--rogue': deck.deckClass === 'Rogue',
-                   'DeckPicker-deck--druid': deck.deckClass === 'Druid',
+       ng-class="{ 'DeckPicker-deck--druid': deck.deckClass === 'Druid',
+                   'DeckPicker-deck--hunter': deck.deckClass === 'Hunter',
+                   'DeckPicker-deck--mage': deck.deckClass === 'Mage',
                    'DeckPicker-deck--paladin': deck.deckClass === 'Paladin',
-                   'DeckPicker-deck--warrior': deck.deckClass === 'Warrior',
                    'DeckPicker-deck--priest': deck.deckClass === 'Priest',
-                   'DeckPicker-deck--hunter': deck.deckClass === 'Hunter' }">
+                   'DeckPicker-deck--rogue': deck.deckClass === 'Rogue',
+                   'DeckPicker-deck--shaman': deck.deckClass === 'Shaman',
+                   'DeckPicker-deck--warlock': deck.deckClass === 'Warlock',
+                   'DeckPicker-deck--warrior': deck.deckClass === 'Warrior' }">
     <div class="DeckPicker-deckName col-xs-6">{{ deck.name }}</div>
     <div class="DeckPicker-deckClass col-xs-6">( {{ deck.deckClass }} )</div>
   </a>
