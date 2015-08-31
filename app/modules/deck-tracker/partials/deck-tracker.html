@@ -1,6 +1,14 @@
 <div class="DeckTracker">
   <div class="DeckTracker-title row">
-    {{ title }} ({{ deck.length }})
+    <div class="DeckTracker-back" ng-click="back()">
+      <i class="glyphicon glyphicon-chevron-left"></i>
+    </div>
+    <div class="DeckTracker-titleText">
+      {{ title }} ({{ deck.length }})
+    </div>
+    <div class="DeckTracker-home" ng-click="home()">
+      <i class="glyphicon glyphicon-home"></i>
+    </div>
   </div>
   <div class="DeckTracker-card row" ng-repeat="card in displayDeck | orderBy: ['cost', 'name']"
        ng-class="{'DeckTracker-card--zero': card.qty === 0,

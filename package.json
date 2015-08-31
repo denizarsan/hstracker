@@ -10,9 +10,7 @@
     "window": {
         "title": "Hearthstone Tracker",
         "width": 320,
-        "height": 815,
-        "toolbar": true,
-        "resizable": false
+        "toolbar": true
     },
     "dependencies": {
         "hearthstone-log-watcher": "^2.0.3",

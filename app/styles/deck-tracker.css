@@ -10,9 +10,24 @@
   font-size: 18px;
 }
 
+.DeckTracker-back {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.DeckTracker-home {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  font-size: 18px;
+  color: #fff;
+}
+
 .DeckTracker-card {
   background: #f0f8ff;
-  border: 1px solid #fff;
 }
 
 .DeckTracker-card--zero {
@@ -21,10 +36,6 @@
 
 .DeckTracker-card--inHand {
   color: #009900;
-}
-
-.DeckTracker-card + .DeckTracker-card {
-  border-top: none;
 }
 
 .DeckTracker-title,

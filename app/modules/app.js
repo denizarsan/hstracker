@@ -41,6 +41,24 @@ angular.module('hstracker', [
         });
     }])
 
-    .run(['Cards', function(Cards) {
-        Cards.setup();
-    }]);
+    .run([
+
+        '$rootScope',
+        '$state',
+        'Cards',
+
+        function($rootScope,
+                 $state,
+                 Cards) {
+
+            var Window = require('nw.gui').Window.get();
+
+            $rootScope.$on('$stateChangeSuccess', function() {
+                if (!$state.is('deck-tracker')) {
+                    Window.height = 568 + Window.window.outerHeight - Window.window.innerHeight;
+                }
+            });
+
+            Cards.setup();
+        }
+    ]);

@@ -1,21 +1,36 @@
 angular.module('hstracker.deck-tracker', [])
 
+    .constant('DeckTrackerTitleHeight', 35)
+
     .controller('DeckTrackerController', [
 
         '$scope',
+        '$state',
         '$stateParams',
+        '$window',
         'Cards',
+        'DeckTrackerTitleHeight',
 
         function($scope,
+                 $state,
                  $stateParams,
-                 Cards) {
+                 $window,
+                 Cards,
+                 DeckTrackerTitleHeight) {
 
             var LogWatcher = require('hearthstone-log-watcher');
 
             $scope.init = function() {
                 var logWatcher = new LogWatcher(),
+                    Window = require('nw.gui').Window.get(),
                     deck = require('../app/data/decks/' + $stateParams.deckName.toLowerCase() + '.json'),
                     knownEntityIds = [];
+
+
+                // Resize window to display the whole deck
+                Window.height = Object.keys(deck.cards).length * 40 +
+                                DeckTrackerTitleHeight +
+                                Window.window.outerHeight - Window.window.innerHeight;
 
                 // Deck
                 $scope.title = deck.name;
@@ -140,6 +155,14 @@ angular.module('hstracker.deck-tracker', [])
                         return card.id === cardInHand.id;
                     });
                 }
+            };
+
+            $scope.back = function() {
+                $window.history.back(-1);
+            };
+
+            $scope.home = function() {
+                $state.go('home');
             };
 
             $scope.init();
