@@ -9,8 +9,9 @@
     "main": "app/index.html",
     "window": {
         "title": "Hearthstone Tracker",
+        "resizable": false,
         "width": 320,
-        "toolbar": true
+        "toolbar": false
     },
     "dependencies": {
         "hearthstone-log-watcher": "^2.0.3",
