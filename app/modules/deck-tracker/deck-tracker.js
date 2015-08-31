@@ -1,27 +1,20 @@
-angular.module('hstracker.deck-tracker', ['ngRoute'])
-
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/deck-tracker/:deckName', {
-            templateUrl: 'modules/deck-tracker/deck-tracker.html',
-            controller: 'DeckTrackerController'
-        });
-    }])
+angular.module('hstracker.deck-tracker', [])
 
     .controller('DeckTrackerController', [
 
-        '$routeParams',
         '$scope',
+        '$stateParams',
         'Cards',
 
-        function($routeParams,
-                 $scope,
+        function($scope,
+                 $stateParams,
                  Cards) {
 
             var LogWatcher = require('hearthstone-log-watcher');
 
             $scope.init = function() {
                 var logWatcher = new LogWatcher(),
-                    deck = require('../app/data/decks/' + $routeParams.deckName.toLowerCase() + '.json'),
+                    deck = require('../app/data/decks/' + $stateParams.deckName.toLowerCase() + '.json'),
                     knownEntityIds = [];
 
                 // Deck

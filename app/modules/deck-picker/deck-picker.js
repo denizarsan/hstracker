@@ -1,11 +1,4 @@
-angular.module('hstracker.deck-picker', ['ngRoute'])
-
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/deck-picker', {
-            templateUrl: 'modules/deck-picker/deck-picker.html',
-            controller: 'DeckPickerController'
-        });
-    }])
+angular.module('hstracker.deck-picker', [])
 
     .controller('DeckPickerController', [
 

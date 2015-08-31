@@ -1,22 +1,22 @@
 {
-  "name": "hstracker",
-  "private": true,
-  "description": "A deck tracker for Hearthstone",
-  "version": "0.1.0",
-  "scripts": {
-    "start": "nw"
-  },
-  "main": "app/index.html",
-  "window": {
-    "title": "Hearthstone Tracker",
-    "width": 320,
-    "height": 815,
-    "toolbar": true,
-    "resizable": false
-  },
-  "dependencies": {
-    "hearthstone-log-watcher": "^2.0.3",
-    "jsonfile": "^2.2.1",
-    "nw": "^0.12.3"
-  }
+    "name": "hstracker",
+    "private": true,
+    "description": "A deck tracker for Hearthstone",
+    "version": "0.1.0",
+    "scripts": {
+        "start": "nw"
+    },
+    "main": "app/index.html",
+    "window": {
+        "title": "Hearthstone Tracker",
+        "width": 320,
+        "height": 815,
+        "toolbar": true,
+        "resizable": false
+    },
+    "dependencies": {
+        "hearthstone-log-watcher": "^2.0.3",
+        "jsonfile": "^2.2.1",
+        "nw": "^0.12.3"
+    }
 }

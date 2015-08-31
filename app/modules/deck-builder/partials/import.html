@@ -1,0 +1,41 @@
+<div class="DeckBuilder-import">
+
+  <div class="form-group">
+    <label>Deck Name</label>
+    <input type="text" class="form-control" id="deckName" placeholder="Enter a name for your deck" ng-model="deckName">
+  </div>
+
+  <div class="form-group">
+    <label>Class</label>
+    <select class="form-control" name="deckClass" ng-model="deckClass">
+      <option value="">Select a class</option>
+      <option value="Druid">Druid</option>
+      <option value="Hunter">Hunter</option>
+      <option value="Mage">Mage</option>
+      <option value="Paladin">Paladin</option>
+      <option value="Priest">Priest</option>
+      <option value="Rogue">Rogue</option>
+      <option value="Shaman">Shaman</option>
+      <option value="Warlock">Warlock</option>
+      <option value="Warrior">Warrior</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Deck File</label>
+    <div class="input-group">
+      <input type="text" class="form-control" ng-value="fileInput.path" placeholder="No file chosen">
+      <span class="input-group-btn">
+        <button class="btn btn-default">
+          Browse...
+          <input type='file' class="DeckBuilder-fileSelect" input-file='fileInput'/>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type='button' class="btn btn-lg btn-primary btn-block" ng-click="importDeck()">Import</button>
+  </div>
+
+</div>

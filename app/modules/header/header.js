@@ -2,14 +2,14 @@ angular.module('hstracker.header', [])
 
     .controller('HeaderController', [
 
-        '$location',
         '$rootScope',
         '$scope',
+        '$state',
         '$window',
 
-        function($location,
-                 $rootScope,
+        function($rootScope,
                  $scope,
+                 $state,
                  $window) {
 
             $scope.showBack = true;
@@ -20,23 +20,26 @@ angular.module('hstracker.header', [])
             };
 
             $scope.home = function() {
-                $location.path('/home');
+                $state.go('home');
             };
 
-            $rootScope.$on('$routeChangeSuccess', function() {
+            $rootScope.$on('$stateChangeSuccess', function() {
                 $scope.showBack = true;
                 $scope.showHome = true;
+                $scope.showHeader = true;
 
-                if ($location.path() === '/home') {
+                if ($state.is('home')) {
                     $scope.showBack = false;
                     $scope.showHome = false;
                     $scope.title = 'Hearthstone Tracker';
-                } else if ($location.path() === '/deck-builder') {
-                    //TODO
-                } else if ($location.path() === '/deck-picker') {
+                } else if ($state.is('deck-builder.build')) {
+                    $scope.title = 'Build a deck';
+                } else if ($state.is('deck-builder.import')) {
+                    $scope.title = 'Import a deck';
+                } else if ($state.is('deck-picker')) {
                     $scope.title = 'Pick a Deck';
-                } else if ($location.path() === '/deck-tracker') {
-                    //TODO
+                } else if ($state.is('deck-tracker')) {
+                    $scope.showHeader = false;
                 }
             });
 
@@ -49,7 +52,7 @@ angular.module('hstracker.header', [])
 
             return {
                 controller: 'HeaderController',
-                templateUrl: 'modules/header/header.html'
+                templateUrl: 'modules/header/partials/header.html'
             };
         }
     ]);

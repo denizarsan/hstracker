@@ -1,28 +1,26 @@
-angular.module('hstracker.deck-builder', ['ngRoute'])
+angular.module('hstracker.deck-builder', [])
 
-    .config(['$routeProvider', function($routeProvider) {
-        $routeProvider.when('/deck-builder/:mode', {
-            templateUrl: 'modules/deck-builder/deck-builder.html',
-            controller: 'DeckBuilderController'
-        });
-    }])
+    .controller('BuildController', [
 
-    .controller('DeckBuilderController', [
-
-        '$location',
-        '$routeParams',
         '$scope',
+
+        function($scope) {
+            $scope.message = 'Coming Soon!';
+        }
+    ])
+
+    .controller('ImportController', [
+
+        '$scope',
+        '$state',
         'Cards',
 
-        function($location,
-                 $routeParams,
-                 $scope,
+        function($scope,
+                 $state,
                  Cards) {
 
             var fs = require('fs'),
                 jsonfile = require('jsonfile');
-
-            $scope.mode = $routeParams.mode;
 
             $scope.importDeck = function() {
                 var deckFile = fs.readFileSync($scope.fileInput.path),
@@ -45,7 +43,7 @@ angular.module('hstracker.deck-builder', ['ngRoute'])
 
                 jsonfile.writeFileSync(jsonFile, deckObject);
 
-                $location.path('/deck-tracker/' + deckObject.name);
+                $state.go('deck-tracker', { deckName: deckObject.name });
             };
         }
     ])
