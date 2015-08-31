@@ -4,32 +4,42 @@
 
 .DeckPicker-deck {
   display: block;
-  padding: 15px;
   color: #fff;
-  font-weight: bold;
-  font-size: 16px;
-  border-top: 1px solid #fff;
-  border-bottom: 1px solid #fff;
   cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
 }
 
-.DeckPicker-deck:hover, .DeckPicker-deck:active {
+.DeckPicker-deck:before {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  background: #f5f5f5;
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: 0 50%;
+  transform-origin: 0 50%;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.DeckPicker-deck:hover, .DeckPicker-deck:focus, .DeckPicker-deck:active {
   color: #333;
-  background-color: #fff;
-  text-decoration: none;
 }
 
-.DeckPicker-deck--priest:hover, .DeckPicker-deck--priest:active {
-  color: #fff;
-  background-color: #333;
-}
-
-.DeckPicker-deck + .DeckPicker-deck {
-  border-top: none;
+.DeckPicker-deck:hover:before, .DeckPicker-deck:focus:before, .DeckPicker-deck:active:before {
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+  -webkit-transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
+  transition-timing-function: cubic-bezier(0.52, 1.64, 0.37, 0.66);
 }
 
 .DeckPicker-deck--druid {
@@ -49,7 +59,6 @@
 }
 
 .DeckPicker-deck--priest {
-  color: #333;
   background-color: #fff;
 }
 
@@ -67,4 +76,56 @@
 
 .DeckPicker-deck--warrior {
   background-color: #c79c6e;
+}
+
+.DeckPicker-deck--rogue, .DeckPicker-deck--priest {
+  color: #333;
+}
+
+.DeckPicker-class {
+  height: 60px;
+  background-position: center;
+}
+
+.DeckPicker-class--druid {
+  background-image: url(../images/druid.png);
+}
+
+.DeckPicker-class--hunter {
+  background-image: url(../images/hunter.png);
+}
+
+.DeckPicker-class--mage {
+  background-image: url(../images/mage.png);
+}
+
+.DeckPicker-class--paladin {
+  background-image: url(../images/paladin.png);
+}
+
+.DeckPicker-class--priest {
+  background-image: url(../images/priest.png);
+}
+
+.DeckPicker-class--rogue {
+  background-image: url(../images/rogue.png);
+}
+
+.DeckPicker-class--shaman {
+  background-image: url(../images/shaman.png);
+}
+
+.DeckPicker-class--warlock {
+  background-image: url(../images/warlock.png);
+}
+
+.DeckPicker-class--warrior {
+  background-image: url(../images/warrior.png);
+}
+
+.DeckPicker-deckName {
+  font-weight: bold;
+  font-size: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
