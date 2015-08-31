@@ -146,6 +146,10 @@ angular.module('hstracker.deck-tracker', [])
                     }
                 });
 
+                logWatcher.on('game-over', function() {
+                    $window.location.reload();
+                });
+
                 logWatcher.start();
 
             };
