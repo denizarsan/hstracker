@@ -5,7 +5,7 @@
 Clone the repository
 
 ```
-git clone https://github.com/rospique/hstracker.git
+git clone https://github.com/denizarsan/hstracker.git
 ```
 
 Install dependencies
