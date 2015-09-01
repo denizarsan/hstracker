@@ -22,5 +22,19 @@ angular.module('hstracker.deck-picker', [])
                     });
                 }
             });
+
+            $scope.deleteDeck = function($event, deck) {
+                var fileName = deck.name + '.json',
+                    filePath = 'app/data/decks/' + fileName;
+
+                $event.stopPropagation();
+                fs.unlinkSync(filePath);
+                _.each($scope.decks, function(currentDeck, index, decks) {
+                    if (currentDeck.name === deck.name &&
+                        currentDeck.deckClass === deck.deckClass) {
+                        decks.splice(index, 1);
+                    }
+                });
+            };
         }
     ]);

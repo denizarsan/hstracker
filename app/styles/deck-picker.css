@@ -143,3 +143,11 @@
   padding-top: 15px;
   padding-bottom: 15px;
 }
+
+.DeckPicker-deleteButton {
+  position: absolute;
+  top: 24px;
+  right: 15px;
+  font-size: 12px;
+}
+

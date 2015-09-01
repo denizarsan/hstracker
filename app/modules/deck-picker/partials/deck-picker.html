@@ -3,5 +3,8 @@
        ng-class="'DeckPicker-deck--' + deck.deckClass.toLowerCase()">
     <div class="DeckPicker-class col-xs-2" ng-class="'DeckPicker-class--' + deck.deckClass.toLowerCase()"></div>
     <div class="DeckPicker-deckName col-xs-10">{{ deck.name }}</div>
+    <div class="DeckPicker-deleteButton" ng-click="deleteDeck($event, deck)">
+      <i class="glyphicon glyphicon-trash"></i>
+    </div>
   </div>
 </div>
