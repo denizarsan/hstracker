@@ -10,13 +10,21 @@ angular.module('hstracker.deck-tracker', [])
         '$window',
         'Cards',
         'DeckTrackerTitleHeight',
+        'GameOverEvent',
+        'GameStartEvent',
+        'ngLogWatcher',
+        'ZoneChangeEvent',
 
         function($scope,
                  $state,
                  $stateParams,
                  $window,
                  Cards,
-                 DeckTrackerTitleHeight) {
+                 DeckTrackerTitleHeight,
+                 GameOverEvent,
+                 GameStartEvent,
+                 ngLogWatcher,
+                 ZoneChangeEvent) {
 
             var LogWatcher = require('hearthstone-log-watcher');
 
@@ -82,6 +90,20 @@ angular.module('hstracker.deck-tracker', [])
                     });
                 });
 
+                ngLogWatcher.start();
+
+                $scope.$on(GameOverEvent, function() {
+                    console.log('Game Over');
+                })
+
+                $scope.$on(GameStartEvent, function() {
+                    console.log('Game Start');
+                })
+
+                $scope.$on(ZoneChangeEvent, function() {
+                    console.log('Zone Change');
+                })
+
                 logWatcher.on('zone-change', function(data) {
                     var currentCard = {
                         id: data.cardId,
@@ -146,9 +168,9 @@ angular.module('hstracker.deck-tracker', [])
                     }
                 });
 
-                logWatcher.on('game-over', function() {
-                    $window.location.reload();
-                });
+                // logWatcher.on('game-over', function() {
+                //     $window.location.reload();
+                // });
 
                 logWatcher.start();
 
