@@ -10,19 +10,24 @@ angular.module('hstracker.deck-tracker', [])
         '$window',
         'Cards',
         'DeckTrackerTitleHeight',
+        'GameOverEvent',
+        'GameStartEvent',
+        'LogWatcher',
+        'ZoneChangeEvent',
 
         function($scope,
                  $state,
                  $stateParams,
                  $window,
                  Cards,
-                 DeckTrackerTitleHeight) {
-
-            var LogWatcher = require('hearthstone-log-watcher');
+                 DeckTrackerTitleHeight,
+                 GameOverEvent,
+                 GameStartEvent,
+                 LogWatcher,
+                 ZoneChangeEvent) {
 
             $scope.init = function() {
-                var logWatcher = new LogWatcher(),
-                    Window = require('nw.gui').Window.get(),
+                var Window = require('nw.gui').Window.get(),
                     deck = require('../app/data/decks/' + $stateParams.deckName.toLowerCase() + '.json'),
                     knownEntityIds = [];
 
@@ -82,29 +87,32 @@ angular.module('hstracker.deck-tracker', [])
                     });
                 });
 
-                logWatcher.on('zone-change', function(data) {
+                LogWatcher.start();
+
+
+                $scope.$on(ZoneChangeEvent, function($event, card) {
                     var currentCard = {
-                        id: data.cardId,
-                        entityId: data.entityId
+                        id: card.id,
+                        entityId: card.entityId
                     };
 
-                    if (data.zone === 'SECRET' ||
-                        data.zone === 'PLAY (Weapon)' ||
-                        data.zone === 'PLAY (Hero)' ||
-                        data.zone === 'PLAY (Hero Power)') {
-                        data.zone = 'PLAY';
+                    if (card.zone === 'SECRET' ||
+                        card.zone === 'PLAY (Weapon)' ||
+                        card.zone === 'PLAY (Hero)' ||
+                        card.zone === 'PLAY (Hero Power)') {
+                        card.zone = 'PLAY';
                     }
 
-                    if (data.team === 'FRIENDLY') {
-                        if (data.zone === 'DECK') {
+                    if (card.team === 'FRIENDLY') {
+                        if (card.zone === 'DECK') {
                             $scope.deck.push(removeAndGetCard(currentCard, 'DECK'));
                             knownEntityIds.push(currentCard.entityId);
                             $scope.$emit('Card Added to Deck', currentCard);
-                        } else if (data.zone === 'HAND') {
+                        } else if (card.zone === 'HAND') {
                             $scope.hand.push(removeAndGetCard(currentCard, 'HAND'));
-                        } else if (data.zone === 'PLAY') {
+                        } else if (card.zone === 'PLAY') {
                             $scope.play.push(removeAndGetCard(currentCard, 'PLAY'));
-                        } else if (data.zone === 'GRAVEYARD') {
+                        } else if (card.zone === 'GRAVEYARD') {
                             $scope.graveyard.push(removeAndGetCard(currentCard, 'GRAVEYARD'));
                         }
 
@@ -146,12 +154,9 @@ angular.module('hstracker.deck-tracker', [])
                     }
                 });
 
-                logWatcher.on('game-over', function() {
+                $scope.$on(GameOverEvent, function() {
                     $window.location.reload();
                 });
-
-                logWatcher.start();
-
             };
 
             $scope.isInHand = function(card) {
