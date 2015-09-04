@@ -11,7 +11,7 @@
         "title": "Hearthstone Tracker",
         "resizable": false,
         "width": 320,
-        "toolbar": true
+        "toolbar": false
     },
     "dependencies": {
         "jsonfile": "^2.2.1",
