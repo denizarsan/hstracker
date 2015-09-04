@@ -42,7 +42,7 @@ angular.module('hstracker.utils', [])
     .constant('GameStartEvent', 'Game Start')
     .constant('ZoneChangeEvent', 'Zone Change')
 
-    .service('ngLogWatcher', [
+    .service('LogWatcher', [
 
         '$rootScope',
         'GameOverEvent',
@@ -57,12 +57,13 @@ angular.module('hstracker.utils', [])
 
             var fs = require('fs'),
                 os = require('os'),
-                path = require('path');
+                path = require('path'),
+                logFilePath = path.join(process.env.HOME, 'Library', 'Logs', 'Unity', 'Player.log'),
+                players = [];
 
 
             this.start = function() {
-                var logFilePath = path.join(process.env.HOME, 'Library', 'Logs', 'Unity', 'Player.log'),
-                    fileSize = fs.statSync(logFilePath).size;
+                var fileSize = fs.statSync(logFilePath).size;
 
                 fs.watchFile(logFilePath, function(current, previous) {
                     var newFileSize = fs.statSync(logFilePath).size,
@@ -84,25 +85,42 @@ angular.module('hstracker.utils', [])
 
                     _.each(buffer.toString().split(os.EOL), function(line) {
                         parseLine(line);
-                    })
+                    });
                 });
             };
 
             this.stop = function() {
-                // Stop watching the log file
+                fs.unwatchFile(logFilePath);
             };
 
             function parseLine(line) {
-                var gameOverRegex = /Entity=GameEntity tag=STATE value=COMPLETE$/,
-                    gameStartRegex = /Entity=(.*) tag=TEAM_ID value=(.)$/,
-                    zoneChangeRegex = /name=(.*) id=(\d+).*cardId=(.*) .* to (FRIENDLY|OPPOSING) (.*)$/;
+                var playerRegex=/Entity=(.*) tag=TEAM_ID value=(\d*)/,
+                    gameOverRegex = /Entity=GameEntity tag=STATE value=COMPLETE$/,
+                    zoneChangeRegex = /name=(.*) id=(\d+).*cardId=(.*) .* to (FRIENDLY|OPPOSING) (.*)$/,
+                    parts = [];
 
-                if (gameOverRegex.test(line)) {
-                    $rootScope.$broadcast(GameOverEvent);
-                } else if (gameStartRegex.test(line)) {
-                    $rootScope.$broadcast(GameStartEvent);
+                if (playerRegex.test(line) && players.length < 2) {
+                    parts = playerRegex.exec(line);
+                    players.push({
+                        name: parts[1],
+                        teamId: parts [2]
+                    });
+
+                    if (players.length === 2) {
+                        $rootScope.$broadcast(GameStartEvent, players);
+                    }
                 } else if (zoneChangeRegex.test(line)) {
-                    $rootScope.$broadcast(ZoneChangeEvent);
+                    parts = zoneChangeRegex.exec(line);
+                    $rootScope.$broadcast(ZoneChangeEvent, {
+                        name: parts[1],
+                        entityId: parts[2],
+                        id: parts[3],
+                        team: parts[4],
+                        zone: parts[5]
+                    });
+                } else if (gameOverRegex.test(line)) {
+                    players = [];
+                    $rootScope.$broadcast(GameOverEvent);
                 }
             }
         }
